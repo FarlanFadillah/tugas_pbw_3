@@ -12,11 +12,14 @@ import { arrObjIncludes } from "../utils/js_object_tools.js";
                 paket : [],
                 stok : [],
                 tracking : [],
-                tabs : 'order-form',
+                tabs : 'stok',
                 order_queue : 4,
                 show_modal : false,
+                show_confirm : false,
+                confirm_answer : null,
                 modal_info : '',
-                modal_message : ''
+                modal_message : '',
+                book_form : null
             }
         },
         methods : {
@@ -27,14 +30,32 @@ import { arrObjIncludes } from "../utils/js_object_tools.js";
                 const res = arrObjIncludes(this.stok, 'kode', form.kode);
                 if(!res.found) {
                     this.stok.push(form);
-                    this.openModal("Success", "Stok buku berhasil di update");
+                    this.openModal("Success", "Stok Buku berhasil ditambahkan");
                 }
                 else {
                     this.openModal("Warning", "Buku dengan kode yang sama telah tersedia");
                 }
             },
-            removeBook(kode){
-                this.stok = this.stok.filter(data=> data.kode !== kode);
+            async removeBook(kode){
+                this.openConfirm('Confirm', "Apakah anda yakin ingin menghapus item ini?");
+
+                const ans = await new Promise(resolve =>{
+                    this.confirm_answer = resolve;
+                })
+
+                if(ans) this.stok = this.stok.filter(data=> data.kode !== kode);
+            },
+            editBook(kode){
+                const book = this.stok.find(data => data.kode === kode);
+                this.book_form = {...book};
+                this.tabs = 'book-form';
+            },
+            updateBook(form){
+                console.log(form);
+                this.stok = this.stok.filter(data=>data.kode !== form.kode)
+                this.stok.push(form);
+                this.book_form = null;
+                this.openModal("Success", "Stok buku berhasil di update");
             },
             insertOrder(form){
                 this.tracking.push(form);
@@ -44,6 +65,7 @@ import { arrObjIncludes } from "../utils/js_object_tools.js";
             },
             closeModal(){
                 this.show_modal = false;
+                this.show_confirm = false;
                 this.modal_info = ""
                 this.modal_message = "";
             },
@@ -51,6 +73,15 @@ import { arrObjIncludes } from "../utils/js_object_tools.js";
                 this.show_modal = true;
                 this.modal_info = info
                 this.modal_message = message;
+            },
+            openConfirm(info, message){
+                this.show_confirm = true;
+                this.modal_info = info
+                this.modal_message = message;
+            },
+            confirmModal(ans){
+                this.confirm_answer(ans);
+                this.closeModal();
             }
         },
         async mounted(){

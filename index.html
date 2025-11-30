@@ -11,6 +11,8 @@
 <body>
 
     <div id="app">
+        <button @click="openConfirm('Confirm', 'Delete?')" class="btn">Confirm</button>
+        <modal-confirm @confirm="confirmModal" :info="modal_info" :message="modal_message" :open="show_confirm" @close="closeModal"></modal-confirm>
         <modal :info="modal_info" :message="modal_message" :open="show_modal" @close="closeModal"></modal>
         <div class="tabs">
             <a @click="tabs='stok'" class="nav-link" :class="{'active' : tabs === 'stok'}">Tabel Stok</a>
@@ -20,13 +22,13 @@
         </div>
 
         <section v-if="tabs === 'stok'">
-            <stock-table @remove-item="removeBook" :stok="stok" :kategori_list="kategoriList" :upbjj_list="upbjjList"></stock-table>
+            <stock-table @edit_item="editBook" @remove-item="removeBook" :stok="stok" :kategori_list="kategoriList" :upbjj_list="upbjjList"></stock-table>
         </section>
         <section v-if="tabs === 'tracking'">
             <do-tracking :tracking="tracking"></do-tracking>
         </section>
         <section v-if="tabs === 'book-form'">
-            <book-form @insert_book="insertBook" :upbjj_list="upbjjList" :kategori_list="kategoriList"></book-form>
+            <book-form @insert_book="insertBook" @update_book="updateBook" :form_to_update="book_form" :upbjj_list="upbjjList" :kategori_list="kategoriList"></book-form>
         </section>
         
         <section v-if="tabs === 'order-form'">
@@ -42,6 +44,7 @@
 
     <script src="js/vue.min.js"></script>
     <script type="module" src="js/components/modal.js"></script>
+    <script type="module" src="js/components/modal-confirm.js"></script>
     <script type="module" src="js/components/stock-table.js"></script>
     <script type="module" src="js/components/book-form.js"></script>
     <script type="module" src="js/components/do-tracking.js"></script>

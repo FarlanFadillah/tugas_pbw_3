@@ -62,7 +62,10 @@
                     <p v-else-if="Number(value.qty) < Number(value.safety) && Number(value.qty) > 0" class="warning">Menipis</p>
                     <p v-else class="danger">Kosong</p>
                 </td>
-                <td><a @click="removeItem(value.kode)" class="btn btn-red clickable">Remove</a></td>
+                <td>
+                    <a @click="removeItem(value.kode)" class="btn btn-red clickable">Remove</a>
+                    <a @click="editItem(value.kode)" class="btn btn-blue clickable">Edit</a>
+                </td>
             </tr>
             <tr v-if="viewStock.length === 0">
                 <td colspan="10" style="text-align:center; font-weight:bold;">Empty</td>

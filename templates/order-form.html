@@ -5,7 +5,7 @@
                     <h3>Order Form</h3>
                 </div>
                 <div class="form-body">
-                    <form id="order-form" class="grid" v-on:submit.prevent="submitForm" v-model="order_form">
+                    <form id="order-form" @keyup-enter="submitForm" class="grid" v-on:submit.prevent="submitForm" v-model="order_form">
                         <div class="input-group">
                             <label for="kode">Number Delivery Order</label>
                             <input readonly class="readonly" required v-model="generatedDO" type="text" name="kode">

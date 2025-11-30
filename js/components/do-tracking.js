@@ -60,6 +60,13 @@
                     this.$refs.loading_circle.style.display = 'none';
                 }, 400);
                 this.$refs.loading_circle.style.display = 'block';
+            },
+            resetSearch(){
+                this.nomor_do = '';
+                this.current_order = {};
+                this.$refs.info_card.style.opacity = 0;
+                this.$refs.message_text.style.opacity = 0;
+                this.$refs.tracking_card.style.opacity = 0;
             }
         }
     })

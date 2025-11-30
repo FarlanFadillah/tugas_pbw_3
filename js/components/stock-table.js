@@ -67,6 +67,12 @@ import { arrObjIncludes } from "../../utils/js_object_tools.js";
         watch : {
             qty_filter(newVal){
                 if(!newVal) this.view_stok = [];
+            },
+            stok : {
+                handler(){
+                    this.view_stok = [];
+                },
+                deep : true
             }
         },
         methods : {
@@ -108,6 +114,9 @@ import { arrObjIncludes } from "../../utils/js_object_tools.js";
             removeItem(kode){
                 this.view_stok = [];
                 this.$emit('remove-item', kode);
+            },
+            editItem(kode){
+                this.$emit('edit_item', kode);
             }
         }
     })

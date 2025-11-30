@@ -64,7 +64,9 @@
             </div>
             <div class="form-footer">
                 <button class="btn btn-gray close-modal-btn">close</button>
-                <input type="submit" form="book-form" class="btn btn-green add-modal-btn" value="add">
+                <button @click="resetForm" class="btn">reset</button>
+                <input v-if="!form_to_update" type="submit" form="book-form" class="btn btn-green add-modal-btn" value="add">
+                <input v-if="form_to_update" type="submit" form="book-form" class="btn btn-green add-modal-btn" value="save">
             </div>
         </div>
     </div>

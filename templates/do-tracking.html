@@ -2,7 +2,7 @@
     <div class="search-box">
         <label for="nomor_do">No. DO/Billing</label>
         <div class="input-group flex-row">
-        <input class="flex-strech" v-model="nomor_do" list="order_list" id="nomor_do" placeholder="Masukkan nomor DO/Billing" />
+        <input @keyup.esc="resetSearch" @keyup.enter="searchDoNumber" class="flex-strech" v-model="nomor_do" list="order_list" id="nomor_do" placeholder="Masukkan nomor DO/Billing" />
         
         <datalist id="order_list">
             <option v-for="value of tracking_list" :value="value">{{value}}</option>
