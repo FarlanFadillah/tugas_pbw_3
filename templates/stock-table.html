@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="filters">
+        <div class="reset-filter">
+            <button @click="resetFilter" class="btn btn-gray">Reset</button>
+        </div>
+        <div class="input-group filter">
+            <input list="list" id="input_filter" v-model="filter_value" placeholder="Type filter here...">
+            <datalist id="list">
+                <option v-for="value of currentFilterList" :value="value">{{value}}</option>
+            </datalist>
+            
+            <button @click="addFilter" class="btn btn-green">Add</button>
+            <select name="" id="" v-model="filter_key" class="btn">
+                <option value="" selected>Choose Filter</option>
+                <option value="upbjj">UPBJJ</option>
+                <option value="kategori">KATEGORI</option>
+            </select>
+            
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" name="low_stock" v-model="qty_filter">
+            <label for="low_stock" id="cb_label">Low On Stock</label>
+        </div>
+    </div>
+    <h3 v-show="filters.length > 0">Current filter list</h3>
+    <div class="filter-list">
+        <div v-for="value of filters" class="filter-item">
+            <div class="info">
+                {{value.key}} {{value.val}}
+            </div>
+            <button @click="rmFilter(value.key)" class="x-btn">
+                x
+            </button>
+        </div>
+    </div>
+    <table>
+        <thead class="bg-blue">
+            <tr>
+                <th>Kode</th>
+                <th @click="sortby('nan', 'judul')" class="pointer">Judul <span class="sorting-icon"></span></th>
+                <th>Kategori</th>
+                <th>UPBJJ</th>
+                <th>Lokasi Rak</th>
+                <th @click="sortby('num', 'harga')" class="pointer">Harga <span class="sorting-icon"></span></th>
+                <th @click="sortby('num', 'qty')" class="pointer">Total <span class="sorting-icon"></span></th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="value of viewStock">
+                <td>{{value.kode}}</td>
+                <td>{{value.judul}}</td>
+                <td>{{value.kategori}}</td>
+                <td>{{value.upbjj}}</td>
+                <td>{{value.lokasiRak}}</td>
+                <td>Rp.{{value.harga.toLocaleString()}}</td>
+                <td><input type="number" v-model="value.qty"></td>
+                <td class="tooltip">
+                    <span class="tooltiptext" v-html="value.catatanHTML"></span>
+                    <p v-if="Number(value.qty) >= Number(value.safety)" class="safe">Aman</p>
+                    <p v-else-if="Number(value.qty) < Number(value.safety) && Number(value.qty) > 0" class="warning">Menipis</p>
+                    <p v-else class="danger">Kosong</p>
+                </td>
+                <td><a @click="removeItem(value.kode)" class="btn btn-red clickable">Remove</a></td>
+            </tr>
+            <tr v-if="viewStock.length === 0">
+                <td colspan="10" style="text-align:center; font-weight:bold;">Empty</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

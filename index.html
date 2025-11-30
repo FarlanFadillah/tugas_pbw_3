@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/my_style.css">
+    <link rel="stylesheet" href="assets/css/stock.css">
+    <link rel="stylesheet" href="assets/css/tracking.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <modal :info="modal_info" :message="modal_message" :open="show_modal" @close="closeModal"></modal>
+        <div class="tabs">
+            <a @click="tabs='stok'" class="nav-link" :class="{'active' : tabs === 'stok'}">Tabel Stok</a>
+            <a @click="tabs='book-form'" class="nav-link" :class="{'active' : tabs === 'book-form'}">Book Form</a>
+            <a @click="tabs='tracking'" class="nav-link" :class="{'active' : tabs === 'tracking'}">Tracking</a>
+            <a @click="tabs='order-form'" class="nav-link" :class="{'active' : tabs === 'order-form'}">Order Book</a>
+        </div>
+
+        <section v-if="tabs === 'stok'">
+            <stock-table @remove-item="removeBook" :stok="stok" :kategori_list="kategoriList" :upbjj_list="upbjjList"></stock-table>
+        </section>
+        <section v-if="tabs === 'tracking'">
+            <do-tracking :tracking="tracking"></do-tracking>
+        </section>
+        <section v-if="tabs === 'book-form'">
+            <book-form @insert_book="insertBook" :upbjj_list="upbjjList" :kategori_list="kategoriList"></book-form>
+        </section>
+        
+        <section v-if="tabs === 'order-form'">
+            <order-form @insert_order="insertOrder" :order_queue="order_queue" :pengiriman_list="pengirimanList" :paket="paket"></order-form>
+        </section>
+
+    </div>
+    
+    <template id="tpl-stock"></template>
+    <template id="tpl-tracking"></template>
+    <template id="tpl-book-form"></template>
+    <template id="tpl-order-form"></template>
+
+    <script src="js/vue.min.js"></script>
+    <script type="module" src="js/components/modal.js"></script>
+    <script type="module" src="js/components/stock-table.js"></script>
+    <script type="module" src="js/components/book-form.js"></script>
+    <script type="module" src="js/components/do-tracking.js"></script>
+    <script type="module" src="js/components/order-form.js"></script>
+    <script type="module" src="js/app.js"></script>
+    
+</body>
+</html>

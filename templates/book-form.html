@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="form fit-content">
+        <div class="content">
+            <div class="form-header">
+                <h3>Book Form</h3>
+            </div>
+            <div class="form-body">
+                <form @keyup.enter="submitForm" id="book-form" class="grid" v-on:submit.prevent="submitForm" v-model="form">
+                    <div class="input-group">
+                        <label for="kode">Kode Buku</label>
+                        <input required v-model="form.kode" type="text" name="kode">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="judul">Judul</label>
+                        <input required v-model="form.judul" type="text" name="judul">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="kategori">Kategori</label>
+                        <input required v-model="form.kategori" list="kategori_list" name="kategori">
+
+                        <datalist id="kategori_list">
+                            <option v-for="value in kategori_list" :value="value">{{value}}</option>
+                        </datalist>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="upbjj">UPBJJ</label>
+                        <input required v-model="form.upbjj" list="upbjj_list" name="upbjj">
+
+                        <datalist id="upbjj_list">
+                            <option v-for="value in upbjj_list" :value="value">{{value}}</option>
+                        </datalist>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="lokasi-rak">Lokasi Rak</label>
+                        <input required v-model="form.lokasiRak" type="text" name="lokasi-rak">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="harga">Harga</label>
+                        <input required v-model="form.harga" type="number" name="harga">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="qty">Jumlah</label>
+                        <input required v-model="form.qty" type="number" name="qty">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="safety">Safety</label>
+                        <input required v-model="form.safety" type="number" name="safety">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="catatan">Catatan</label>
+                        <input v-model="form.catatanHTML" type="text" name="catatan">
+                    </div>
+
+                </form>
+                <div v-if="show_message" :class="form_message.type" v-text="form_message.text"></div>
+            </div>
+            <div class="form-footer">
+                <button class="btn btn-gray close-modal-btn">close</button>
+                <input type="submit" form="book-form" class="btn btn-green add-modal-btn" value="add">
+            </div>
+        </div>
+    </div>
+</div>

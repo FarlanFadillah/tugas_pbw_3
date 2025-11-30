@@ -1,0 +1,54 @@
+<div class="container tracking-container">
+    <div class="search-box">
+        <label for="nomor_do">No. DO/Billing</label>
+        <div class="input-group flex-row">
+        <input class="flex-strech" v-model="nomor_do" list="order_list" id="nomor_do" placeholder="Masukkan nomor DO/Billing" />
+        
+        <datalist id="order_list">
+            <option v-for="value of tracking_list" :value="value">{{value}}</option>
+        </datalist>
+        
+        <button @click="searchDoNumber" class="btn btn-yellow no-margin">Lacak</button>
+        <!-- <button @click="generateDO" onClick="openFormModal()" class="btn btn-blue no-margin">New</button> -->
+        </div>
+    </div>
+
+    <span class="loading-container">
+        <p ref="loading_circle" class="loading-circle"></p>
+    </span>     
+    <span ref="message_text" class="message">
+        <p>{{message}}</p>
+    </span>   
+
+    <div ref="info_card" class="info-card">
+        <div class="info-row">
+        <div class="info-mahasiswa">
+            <h3>{{current_order?.nama}}</h3>
+            <h4>{{current_order?.nim}}</h4>
+        </div>
+        <div class="info-date">
+            <p>Tangal Kirim : {{current_order?.tanggalKirim}}</p>
+        </div>
+        </div>
+        <p class="status">
+        {{current_order?.status}}
+        </p>
+        <p class="ekspedisi">
+        {{current_order?.paket}} {{current_order?.expedisi}}
+        </p>
+    </div>
+
+    <div ref="tracking_card" class="tracking_card">
+        <h3>Perjalanan Paket</h3>
+        <ul class="timeline">
+        <!-- Timeline perjalanan paket -->
+        <li v-for="value of current_order?.perjalanan">
+            <div class="dot"></div>
+            <div class="content">
+                <p>{{value.keterangan}}</p>
+                <span>{{new Date(value.waktu).toLocaleString()}}</span>
+            </div>
+        </li>
+        </ul>
+    </div>
+</div>

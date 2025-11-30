@@ -1,0 +1,384 @@
+#app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+a {
+    cursor : pointer;
+}
+
+.container {
+    padding: 10px;
+}
+
+/* Buttons */
+.btn {
+    display: block;
+    text-align: center;
+    background: #f9f9f9;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn.no-margin { 
+    margin: 0px;
+}
+
+.x-btn{
+    max-height: fit-content;
+    padding: 3px;
+    margin: 5px;
+    border-radius: 50px;
+    background-color: rgb(200, 213, 224);
+    cursor: pointer;
+    border: none;
+}
+
+
+.btn:hover {
+    background: #cacaca;
+}
+
+.btn-yellow {
+    background: #f2c94c;
+}
+
+.btn-yellow:hover {
+    background: #e0b944;
+}
+
+.btn-blue {
+    background-color: rgb(52, 99, 252);
+}
+
+.btn-blue:hover {
+    background-color: rgb(80, 0, 219);
+}
+
+.btn-red {
+    background-color: rgb(249, 27, 71);
+}
+
+.btn-red:hover {
+    background-color: rgb(207, 23, 60);
+}
+
+.btn-green {
+    background-color: rgb(119, 249, 27);
+}
+
+.btn-green:hover {
+    background-color: rgb(105, 218, 24);
+}
+
+.btn-gray {
+    background-color: rgb(150, 150, 150);
+}
+
+.btn-gray:hover {
+    background-color: rgb(122, 122, 122);
+}
+
+
+/* Inputs */
+.input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    padding: 5px;
+    border: 1px solid rgb(130, 130, 131);
+    border-radius: 5px;
+    padding: 10px 18px;
+}
+
+.input-group input.readonly {
+    background-color: #d3d5d6;
+}
+
+.input-group input:focus {
+    box-shadow: 0 0 4px 1px rgb(130, 170, 255);
+    border: 1px solid rgb(70, 114, 207);
+    outline: none;
+    transition: ease-in 200ms;
+}
+
+.bg-dark > input {
+    color: white;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    background-color: #424950;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Select */
+.input-group select {
+    max-width: 200px;
+    padding: 5px;
+    border: 1px solid rgb(130, 130, 131);
+    border-radius: 5px;
+    padding: 10px 18px;
+
+    /* prevent long text from spilling */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.input-group select option {
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+
+.input-group select:focus {
+    box-shadow: 0 0 4px 1px rgb(130, 170, 255);
+    border: 1px solid rgb(70, 114, 207);
+    outline: none;
+    transition: ease-in 200ms;
+}
+
+
+/* Text Color */
+.safe {
+    color : green;
+}
+.warning {
+    color: orange;
+}
+.danger {
+    color: red;
+}
+
+/* Table */
+table, th, td{
+    border: 1px solid black;
+    padding: 10px;
+}
+th {
+    background-color: rgb(205, 203, 203);
+}
+thead.bg-red > tr th  {
+    background-color: rgb(218, 103, 80);
+}
+thead.bg-blue > tr th  {
+    background-color: rgb(80, 167, 218);
+}
+
+thead.bg-green > tr th  {
+    background-color: rgb(80, 218, 117);
+}
+
+table {
+    /* no space between cell */
+    border-collapse: collapse;
+    width: 1221px;
+}
+
+
+/* Layout */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 kolom sama besar */
+    grid-auto-rows: auto;           /* tinggi row otomatis mengikuti konten */
+    gap: 10px;                      /* jarak antar item (opsional) */
+    padding: 15px;                   
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-strech {
+    flex: 1;
+}
+
+/* Loading Animation */
+.loading-container {
+    margin-top: 10px;
+    display: flex;
+    justify-self: center;
+    background-color: transparent;
+}
+.loading-circle {
+    display: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #f2c94c;
+    border-bottom-color: white;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Message Container */
+
+.message { 
+    display: block;
+    text-align: center;
+    color: red;
+    
+    opacity: 0;
+    transition: opacity ease-in-out 0.4s;
+}
+
+/* Cursor Style */
+.pointer {
+    cursor: ns-resize;
+}
+
+
+/* Navigation */
+.tabs {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+}
+.nav-link {
+    padding: 15px;
+    text-decoration: none;
+    color: rgb(63, 112, 247);
+}
+
+.nav-link.active {
+    color: rgb(0, 0, 0);
+    background-color: #cacaca;
+}
+
+
+/* Tooltips */
+/* Tooltip container */
+.tooltip {
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.tooltiptext {
+  visibility: hidden; /* Hidden by default */
+  width: 130px;
+  background-color: black;
+  color: #ffffff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1; /* Ensure tooltip is displayed above content */
+}
+
+/* Show the tooltip text on hover */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+/* Form */
+.form {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color:#000000;
+    padding: 10px;
+    width: 880px; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    overflow: hidden;
+}
+.form-content > * {
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+}
+
+.bg-dark .form-content > * {
+    color: white;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    background-color: #212529;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    overflow: hidden;
+    border-radius: 10px;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.fit-content > .form-content {
+    max-width: fit-content;
+    margin: 0 auto;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.form-header {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100%;
+    height: 25px;
+}
+
+.form-header h3 {
+    width: 100%;
+}
+
+.form-body {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.form-body p {
+    text-align: center;
+    width: 100%;
+}
+
+.form-footer{
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    height: 100%;
+}

@@ -1,0 +1,115 @@
+.tracking-container {
+  width: 600px;
+}
+
+
+/* Info card */
+.info-card {
+  background: #254ede;
+  color: #fff;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-top: 25px;
+
+  /* Animation */
+  opacity: 0;
+  transition: opacity ease-in-out 0.4s;
+}
+
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.info-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info-card h4 {
+  margin: 4px 0 0;
+  font-weight: 400;
+}
+
+.info-card .info-date {
+  text-align: right;
+}
+
+.status {
+  margin: 15px 0 5px;
+}
+
+.ekspedisi {
+  font-size: 14px;
+  color: #d0d4f6;
+  margin: 0;
+}
+
+/* Tracking section */
+.tracking_card {
+  margin-top: 30px;
+
+  /* Animation */
+  opacity: 0;
+  transition: opacity ease-in-out 0.4s;
+}
+
+.tracking_card h3 {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.timeline {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  border-left: 2px solid #ddd;
+}
+
+.timeline li {
+  position: relative;
+  margin-left: 20px;
+  padding-bottom: 20px;
+}
+
+.timeline li:last-child {
+  padding-bottom: 0;
+}
+
+.dot {
+  position: absolute;
+  left: -11px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  background: #f2c94c;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #f2c94c;
+}
+
+.content {
+  padding-left: 10px;
+}
+
+.content p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.content small {
+  color: #777;
+  display: block;
+  margin-top: 4px;
+}
+
+.content span {
+  display: block;
+  color: #999;
+  font-size: 13px;
+  margin-top: 6px;
+}

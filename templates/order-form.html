@@ -1,0 +1,68 @@
+<div class="container">
+        <div class="form fit-content">
+            <div class="content">
+                <div class="form-header">
+                    <h3>Order Form</h3>
+                </div>
+                <div class="form-body">
+                    <form id="order-form" class="grid" v-on:submit.prevent="submitForm" v-model="order_form">
+                        <div class="input-group">
+                            <label for="kode">Number Delivery Order</label>
+                            <input readonly class="readonly" required v-model="generatedDO" type="text" name="kode">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="nim">NIM</label>
+                            <input required v-model="order_form.nim" type="text" name="nim">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="nama">Nama</label>
+                            <input required v-model="order_form.nama" type="text" name="nama">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="expedisi">Expedisi</label>
+                            <input required v-model="order_form.expedisi" list="expedisi-list" name="expedisi">
+
+                            <datalist id="expedisi-list">
+                                <option v-for="value in pengiriman_list" :value="value.kode">{{value.nama}}</option>
+                            </datalist>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="paket-ba">Paket BA</label>
+                            <div class="flex-column">
+                              <select name="paket-ba" v-model="order_form.paket">
+                                <option v-for="value in paket" :value="value">{{value.nama}} Rp. {{value.harga}}</option>
+                              </select>
+                              <div v-if="order_form?.paket" class="list list-ba">
+                                <h4>List BA</h4>
+                                <ul>
+                                  <li v-for="value in order_form.paket.isi">{{value}}</li>
+                                </ul>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="tgl-kirim">Tanggal Kirim</label>
+                            <input required v-model="order_form.tanggalKirim" type="date" name="tgl-kirim">
+                        </div>
+
+                        <div class="input-group">
+                          <label for="harga">Total Harga</label>
+                          <input type="text" readonly class="readonly" :value="String('Rp.') + (order_form.paket?.harga.toLocaleString() || '')">
+                        </div>
+
+                    </form>
+                    <div v-if="show_message" :class="form_message.type" v-text="form_message.text"></div>
+                </div>
+                <div class="form-footer">
+                  <button @click="resetForm" class="btn btn-yellow">Reset</button>
+                  <button class="btn btn-gray close-form-btn">close</button>
+                  <input type="submit" form="order-form" class="btn btn-green add-form-btn" value="Order">
+                </div>
+            </div>
+        </div>
+    </div>
