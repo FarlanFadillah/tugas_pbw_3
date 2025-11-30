@@ -42,6 +42,7 @@
         methods : {
             submitForm(){
                 this.form.harga = Number(this.form.harga);
+                
                 if(this.form && this.method === "insert") this.$emit("insert_book", this.form);
                 if(this.form_to_update && this.method === "update") this.$emit("update_book", this.form);
                 this.form = {};

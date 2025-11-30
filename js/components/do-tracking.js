@@ -12,11 +12,8 @@
                 current_seq : 3,
                 nomor_do : '',
                 current_order : {},
-                form : {
-                    
-                },
                 show_message : false,
-                generatedDO : 'asdfasd001'
+                generatedDO : ''
             }
         },
         props : [

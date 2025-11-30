@@ -54,7 +54,7 @@
                 this.resetForm();
             },
             resetForm(){
-                this.order_form = {}
+                this.order_form = {};
             }
         },
         mounted(){

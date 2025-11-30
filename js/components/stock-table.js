@@ -21,7 +21,6 @@ import { arrObjIncludes } from "../../utils/js_object_tools.js";
                 filter_key : '',        // nama kolom yang akan disorting
                 filter_value : '',      // value yang akan disorting
                 filters : [],           // daftar filter
-                form : {},              // objek form buku
                 form_message : {},      // config message
                 show_message : false    // kondisi untuk kapan menampilkan message
             }

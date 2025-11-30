@@ -41,9 +41,9 @@ import { arrObjIncludes } from "../utils/js_object_tools.js";
 
                 const ans = await new Promise(resolve =>{
                     this.confirm_answer = resolve;
-                })
+                });
 
-                if(ans) this.stok = this.stok.filter(data=> data.kode !== kode);
+                if(ans) this.stok = this.stok.filter(data=> data.kode !== kode); 
             },
             editBook(kode){
                 const book = this.stok.find(data => data.kode === kode);
@@ -51,8 +51,7 @@ import { arrObjIncludes } from "../utils/js_object_tools.js";
                 this.tabs = 'book-form';
             },
             updateBook(form){
-                console.log(form);
-                this.stok = this.stok.filter(data=>data.kode !== form.kode)
+                this.stok = this.stok.filter(data=> data.kode !== form.kode);
                 this.stok.push(form);
                 this.book_form = null;
                 this.openModal("Success", "Stok buku berhasil di update");

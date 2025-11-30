@@ -11,7 +11,6 @@
 <body>
 
     <div id="app">
-        <button @click="openConfirm('Confirm', 'Delete?')" class="btn">Confirm</button>
         <modal-confirm @confirm="confirmModal" :info="modal_info" :message="modal_message" :open="show_confirm" @close="closeModal"></modal-confirm>
         <modal :info="modal_info" :message="modal_message" :open="show_modal" @close="closeModal"></modal>
         <div class="tabs">
@@ -24,9 +23,11 @@
         <section v-if="tabs === 'stok'">
             <stock-table @edit_item="editBook" @remove-item="removeBook" :stok="stok" :kategori_list="kategoriList" :upbjj_list="upbjjList"></stock-table>
         </section>
+
         <section v-if="tabs === 'tracking'">
             <do-tracking :tracking="tracking"></do-tracking>
         </section>
+
         <section v-if="tabs === 'book-form'">
             <book-form @insert_book="insertBook" @update_book="updateBook" :form_to_update="book_form" :upbjj_list="upbjjList" :kategori_list="kategoriList"></book-form>
         </section>
